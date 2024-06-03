@@ -1,0 +1,22 @@
+services:
+  pg:
+    build: .
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    expose:
+      - 5432
+    networks:
+      pg_database:
+        aliases:
+          - pg
+
+volumes:
+  pgdata:
+
+networks:
+  pg_database:
+    name: pg_database
